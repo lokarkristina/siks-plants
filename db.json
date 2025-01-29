@@ -399,36 +399,6 @@
       "last-watered": "2023-10-01",
       "notes": "Bright flowers",
       "type": "Flowering"
-    },
-    {
-      "id": 41,
-      "name": "Zinnia",
-      "watering-frequency": "1/week",
-      "room": "Garden",
-      "prefers": "sun",
-      "last-watered": "2023-10-01",
-      "notes": "Summer bloomer",
-      "type": "Flowering"
-    },
-    {
-      "id": 42,
-      "name": "Snapdragon",
-      "watering-frequency": "1/week",
-      "room": "Garden",
-      "prefers": "sun",
-      "last-watered": "2023-10-01",
-      "notes": "Tall spikes",
-      "type": "Flowering"
-    },
-    {
-      "id": 43,
-      "name": "Pansy",
-      "watering-frequency": "1/week",
-      "room": "Garden",
-      "prefers": "sun",
-      "last-watered": "2023-10-01",
-      "notes": "Cool weather bloomer",
-      "type": "Flowering"
     }
   ]
 }
