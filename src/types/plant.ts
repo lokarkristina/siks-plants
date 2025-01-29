@@ -13,9 +13,9 @@ export interface Plant {
   id: number
   name: string
   wateringFrequency: string
-  room: number
+  room?: number
   prefers: string
   lastWatered: Date
-  notes: string
+  notes?: string
   type: number[]
 }
