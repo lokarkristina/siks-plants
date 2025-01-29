@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-*: initial;
+
+    --font-sans: "Palanquin", serif;
+    --font-serif: "Text Me One", serif;
+
+    /* @todo use moderners color definitions */
+    --color-primary: #528265;
+    --color-light: #C7EFE0;
+    --color-accent: #E7AD99;
+    --color-dark: #1a1d1a;
+
+
+}
+
+/* @todo check if this should be defined elsewhere */
+.container {
+    /* width: minmax(85vw, var(--container-7xl)); */
+}

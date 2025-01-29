@@ -1,21 +1,26 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+// components
+import ppHeader from '@/components/elements/ppHeader.vue'
+import ppFooter from '@/components/elements/ppFooter.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <!-- page header -->
+  <ppHeader />
 
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <!-- content -->
+  <main class="container py-20">
+    <RouterView />
+  </main>
 
-  <RouterView />
+  <!-- page footer -->
+  <ppFooter />
 </template>
 
-<style scoped>
+<style>
+.container {
+  width: max(95vw, var(--container-xl));
+  margin-inline: auto;
+}
 </style>
