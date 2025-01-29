@@ -1,0 +1,434 @@
+{
+  "plants": [
+    {
+      "id": 1,
+      "name": "Aloe Vera",
+      "watering-frequency": "1/week",
+      "room": "Living Room",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Medicinal plant",
+      "type": "Succulent"
+    },
+    {
+      "id": 2,
+      "name": "Spider Plant",
+      "watering-frequency": "3/week",
+      "room": "Kitchen",
+      "prefers": "shade",
+      "last-watered": "2023-10-02",
+      "notes": "Air purifier",
+      "type": "Air Purifying"
+    },
+    {
+      "id": 3,
+      "name": "Peace Lily",
+      "watering-frequency": "1/week",
+      "room": "Bedroom",
+      "prefers": "shade",
+      "last-watered": "2023-10-03",
+      "notes": "Blooms occasionally",
+      "type": "Flowering"
+    },
+    {
+      "id": 4,
+      "name": "Snake Plant",
+      "watering-frequency": "2/months",
+      "room": "Bathroom",
+      "prefers": "mixed",
+      "last-watered": "2023-09-25",
+      "notes": "Low maintenance",
+      "type": "Succulent"
+    },
+    {
+      "id": 5,
+      "name": "Fiddle Leaf Fig",
+      "watering-frequency": "1/week",
+      "room": "Living Room",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Needs bright light",
+      "type": "Tree"
+    },
+    {
+      "id": 6,
+      "name": "Boston Fern",
+      "watering-frequency": "3/week",
+      "room": "Bathroom",
+      "prefers": "shade",
+      "last-watered": "2023-10-02",
+      "notes": "Likes humidity",
+      "type": "Fern"
+    },
+    {
+      "id": 7,
+      "name": "ZZ Plant",
+      "watering-frequency": "2/months",
+      "room": "Office",
+      "prefers": "shade",
+      "last-watered": "2023-09-20",
+      "notes": "Tolerates low light",
+      "type": "Succulent"
+    },
+    {
+      "id": 8,
+      "name": "Pothos",
+      "watering-frequency": "1/week",
+      "room": "Kitchen",
+      "prefers": "mixed",
+      "last-watered": "2023-10-01",
+      "notes": "Easy to propagate",
+      "type": "Vine"
+    },
+    {
+      "id": 9,
+      "name": "Rubber Plant",
+      "watering-frequency": "1/week",
+      "room": "Living Room",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Can grow tall",
+      "type": "Tree"
+    },
+    {
+      "id": 10,
+      "name": "Jade Plant",
+      "watering-frequency": "2/months",
+      "room": "Office",
+      "prefers": "sun",
+      "last-watered": "2023-09-15",
+      "notes": "Succulent",
+      "type": "Succulent"
+    },
+    {
+      "id": 11,
+      "name": "Monstera",
+      "watering-frequency": "1/week",
+      "room": "Living Room",
+      "prefers": "mixed",
+      "last-watered": "2023-10-01",
+      "notes": "Large leaves",
+      "type": "Vine"
+    },
+    {
+      "id": 12,
+      "name": "Philodendron",
+      "watering-frequency": "1/week",
+      "room": "Bedroom",
+      "prefers": "shade",
+      "last-watered": "2023-10-03",
+      "notes": "Climbing plant",
+      "type": "Vine"
+    },
+    {
+      "id": 13,
+      "name": "Calathea",
+      "watering-frequency": "3/week",
+      "room": "Bathroom",
+      "prefers": "shade",
+      "last-watered": "2023-10-02",
+      "notes": "Likes humidity",
+      "type": "Foliage"
+    },
+    {
+      "id": 14,
+      "name": "Dracaena",
+      "watering-frequency": "1/week",
+      "room": "Office",
+      "prefers": "mixed",
+      "last-watered": "2023-10-01",
+      "notes": "Air purifier",
+      "type": "Tree"
+    },
+    {
+      "id": 15,
+      "name": "Cactus",
+      "watering-frequency": "2/months",
+      "room": "Living Room",
+      "prefers": "sun",
+      "last-watered": "2023-09-10",
+      "notes": "Desert plant",
+      "type": "Succulent"
+    },
+    {
+      "id": 16,
+      "name": "Orchid",
+      "watering-frequency": "1/week",
+      "room": "Bedroom",
+      "prefers": "mixed",
+      "last-watered": "2023-10-03",
+      "notes": "Blooms beautifully",
+      "type": "Flowering"
+    },
+    {
+      "id": 17,
+      "name": "Bamboo",
+      "watering-frequency": "3/week",
+      "room": "Bathroom",
+      "prefers": "shade",
+      "last-watered": "2023-10-02",
+      "notes": "Grows fast",
+      "type": "Grass"
+    },
+    {
+      "id": 18,
+      "name": "Succulent",
+      "watering-frequency": "2/months",
+      "room": "Office",
+      "prefers": "sun",
+      "last-watered": "2023-09-15",
+      "notes": "Low maintenance",
+      "type": "Succulent"
+    },
+    {
+      "id": 19,
+      "name": "Lavender",
+      "watering-frequency": "1/week",
+      "room": "Living Room",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Fragrant",
+      "type": "Herb"
+    },
+    {
+      "id": 20,
+      "name": "Mint",
+      "watering-frequency": "3/week",
+      "room": "Kitchen",
+      "prefers": "sun",
+      "last-watered": "2023-10-02",
+      "notes": "Herb",
+      "type": "Herb"
+    },
+    {
+      "id": 21,
+      "name": "Basil",
+      "watering-frequency": "3/week",
+      "room": "Kitchen",
+      "prefers": "sun",
+      "last-watered": "2023-10-02",
+      "notes": "Herb",
+      "type": "Herb"
+    },
+    {
+      "id": 22,
+      "name": "Rosemary",
+      "watering-frequency": "1/week",
+      "room": "Kitchen",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Herb",
+      "type": "Herb"
+    },
+    {
+      "id": 23,
+      "name": "Thyme",
+      "watering-frequency": "1/week",
+      "room": "Kitchen",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Herb",
+      "type": "Herb"
+    },
+    {
+      "id": 24,
+      "name": "Rose",
+      "watering-frequency": "2/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Beautiful flowers",
+      "type": "Flowering"
+    },
+    {
+      "id": 25,
+      "name": "Tulip",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Spring bloomer",
+      "type": "Flowering"
+    },
+    {
+      "id": 26,
+      "name": "Daffodil",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Bright yellow flowers",
+      "type": "Flowering"
+    },
+    {
+      "id": 27,
+      "name": "Sunflower",
+      "watering-frequency": "2/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Tall and bright",
+      "type": "Flowering"
+    },
+    {
+      "id": 28,
+      "name": "Daisy",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Simple and pretty",
+      "type": "Flowering"
+    },
+    {
+      "id": 29,
+      "name": "Marigold",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Bright orange flowers",
+      "type": "Flowering"
+    },
+    {
+      "id": 30,
+      "name": "Chrysanthemum",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Fall bloomer",
+      "type": "Flowering"
+    },
+    {
+      "id": 31,
+      "name": "Peony",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Large blooms",
+      "type": "Flowering"
+    },
+    {
+      "id": 32,
+      "name": "Hydrangea",
+      "watering-frequency": "2/week",
+      "room": "Garden",
+      "prefers": "shade",
+      "last-watered": "2023-10-01",
+      "notes": "Colorful clusters",
+      "type": "Flowering"
+    },
+    {
+      "id": 33,
+      "name": "Lilac",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Fragrant flowers",
+      "type": "Flowering"
+    },
+    {
+      "id": 34,
+      "name": "Azalea",
+      "watering-frequency": "2/week",
+      "room": "Garden",
+      "prefers": "shade",
+      "last-watered": "2023-10-01",
+      "notes": "Spring bloomer",
+      "type": "Flowering"
+    },
+    {
+      "id": 35,
+      "name": "Camellia",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "shade",
+      "last-watered": "2023-10-01",
+      "notes": "Winter bloomer",
+      "type": "Flowering"
+    },
+    {
+      "id": 36,
+      "name": "Gardenia",
+      "watering-frequency": "2/week",
+      "room": "Garden",
+      "prefers": "shade",
+      "last-watered": "2023-10-01",
+      "notes": "Fragrant flowers",
+      "type": "Flowering"
+    },
+    {
+      "id": 37,
+      "name": "Begonia",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "shade",
+      "last-watered": "2023-10-01",
+      "notes": "Colorful leaves",
+      "type": "Flowering"
+    },
+    {
+      "id": 38,
+      "name": "Petunia",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Summer bloomer",
+      "type": "Flowering"
+    },
+    {
+      "id": 39,
+      "name": "Impatiens",
+      "watering-frequency": "2/week",
+      "room": "Garden",
+      "prefers": "shade",
+      "last-watered": "2023-10-01",
+      "notes": "Shade loving",
+      "type": "Flowering"
+    },
+    {
+      "id": 40,
+      "name": "Geranium",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Bright flowers",
+      "type": "Flowering"
+    },
+    {
+      "id": 41,
+      "name": "Zinnia",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Summer bloomer",
+      "type": "Flowering"
+    },
+    {
+      "id": 42,
+      "name": "Snapdragon",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Tall spikes",
+      "type": "Flowering"
+    },
+    {
+      "id": 43,
+      "name": "Pansy",
+      "watering-frequency": "1/week",
+      "room": "Garden",
+      "prefers": "sun",
+      "last-watered": "2023-10-01",
+      "notes": "Cool weather bloomer",
+      "type": "Flowering"
+    }
+  ]
+}
