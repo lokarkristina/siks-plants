@@ -17,11 +17,16 @@ const selectedType = ref<number[]>([])
 // @todo maybe clean up classes more? idk what tailwindy wants
 const filterClasses = ['grid', 'items-center', 'gap-1.5']
 
-// @todo this function is too broad, it's doing too much at the same time
-// @todo refactor to separate functions, make utils
-const getNameById = (id: number | number[], list: Room[] | PlantType[]) => {
-  const item = list.find((item) => item.id === id)
-  return item?.name || ''
+const getRoomNameById = (id: number, rooms: Room[]): string => {
+  const room = rooms.find((room) => room.id === id)
+  return room?.name || ''
+}
+
+const getPlantTypeNames = (typeIds: number[], types: PlantType[]): string => {
+  return typeIds
+    .map((id) => types.find((type) => type.id === id)?.name)
+    .filter((name) => name)
+    .join(', ')
 }
 
 const filteredPlants = computed(() => {
@@ -68,24 +73,26 @@ const resetFilters = () => {
 
 const fetchPlants = async () => {
   try {
-    const response = await fetch(`${API_URL}`)
+    const response = await fetch(`${API_URL}/db`)
     if (!response.ok) {
       throw new Error('Network response was not ok!')
     }
-    // @todo add loader
+    // @todo loading
     const data = await response.json()
     // @todo do we separate this? or no call at all, bc so little data?
-    const { allPlants, allRooms, allTypes } = data
-    plants.value = allPlants
+    // @todo why no refactoring working?
+    plants.value = data.allPlants
 
-    rooms.value = allRooms
+    rooms.value = data.allRooms
     if (rooms.value.length) {
       rooms.value = [{ id: 0, name: 'Any' }, ...rooms.value]
     }
 
-    plantTypes.value = allTypes
+    plantTypes.value = data.allTypes
   } catch (error) {
     console.error('Error fetching plants:', error)
+  } finally {
+    // @todo loading
   }
 }
 
@@ -96,7 +103,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="plants grid grid-cols-[0.4fr_0.6fr_auto] grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5"
+    class="plants grid grid-cols-[0.25fr_0.65fr_auto] grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5"
   >
     <div class="plants-title-area col-span-full row-[1]">
       <h1>My <span>plants</span></h1>
@@ -107,10 +114,16 @@ onMounted(() => {
     <!-- filters -->
     <div class="plants-filters col-span-1 row-start-2 row-span-full">
       <div class="plants-filter__header flex justify-between items-center">
-        <p class="text-2xl">Filters</p>
+        <p class="text-xl">filter by</p>
 
         <!-- reset all filters -->
-        <button class="button button--secondary" @click="resetFilters">Reset all filters</button>
+        <button
+          v-if="selectedRoom !== 0 || !!selectedType.length"
+          class="button button--secondary"
+          @click="resetFilters"
+        >
+          reset
+        </button>
       </div>
 
       <div
@@ -149,7 +162,7 @@ onMounted(() => {
     </div>
 
     <!-- sorting -->
-    <div class="plants-sort col-[3] row-start-2 row-end-3">
+    <div class="plants-sort col-[3] row-start-2 row-end-3 order-1">
       <!-- reset (by id, default | name | last watered) -->
       <div class="plants-sort__order flex items-center gap-2">
         <label for="sort-order" class="text-xs">Sort by</label>
@@ -168,7 +181,7 @@ onMounted(() => {
     >
       <p class="col-[1/span 2] row-span-1 text-xl">
         Results
-        <span class="text-xs">({{ filteredPlants.length }})</span>
+        <span class="text-xs text-light">({{ filteredPlants.length }})</span>
       </p>
 
       <div class="grid col-span-full row-start-2 grid-cols-4 gap-4">
@@ -182,12 +195,11 @@ onMounted(() => {
           >
             <h2>{{ plant.name }}</h2>
             <p>Watering Frequency: {{ plant.wateringFrequency }}</p>
-            <p>Room: {{ getNameById(plant.room, rooms) }}</p>
-            <!-- @todo type not working yet, bc array -->
-            <p v-if="plant.type.length">Type: {{ getNameById(plant.type, plantTypes) }}</p>
+            <p v-if="!!plant.room">Room: {{ getRoomNameById(plant.room, rooms) }}</p>
+            <p v-if="plant.type.length">Type: {{ getPlantTypeNames(plant.type, plantTypes) }}</p>
           </RouterLink>
         </template>
-        <p v-else>No plants found. 🪴</p>
+        <p v-else class="text-xl text-center">No plants found. 🪴</p>
       </div>
     </div>
   </div>
