@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <footer class="footer p-10 text-right bg-(--color-light) text-(--color-primary)">
     <div class="container">

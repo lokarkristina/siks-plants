@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
 // components
-import ppHeader from '@/components/elements/ppHeader.vue'
-import ppFooter from '@/components/elements/ppFooter.vue'
+import ppHeader from '@/components/layout/ppHeader.vue'
+import ppFooter from '@/components/layout/ppFooter.vue'
 </script>
 
 <template>

@@ -1,10 +1,13 @@
 @import 'tailwindcss';
+/* @todo check for file standards */
 
 @theme {
+    /* reset tailwind color variables, bc no need */
     --color-*: initial;
 
+    /* not sure about these fonts yet */
     --font-sans: "Palanquin", serif;
-    --font-serif: "Text Me One", serif;
+    --font-serif: "Tajawal", serif;
 
     /* @todo use moderners color definitions */
     --color-primary: #528265;
@@ -16,6 +19,13 @@
 }
 
 /* @todo check if this should be defined elsewhere */
-.container {
-    /* width: minmax(85vw, var(--container-7xl)); */
+h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-6xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark);
+
+    span {
+        color: var(--color-accent);
+    }
 }

@@ -1,17 +1,17 @@
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <header class="px-5 py-10 border-b-1 border-b-primary/25">
     <div class="container flex justify-between items-center">
       <div class="header-logo max-w-40">
-        <img alt="plant.pal logo" class="logo" src="@/assets/logo.svg" />
+        <RouterLink to="/">
+          <img alt="plant.pal logo" class="logo" src="@/assets/logo.svg" />
+        </RouterLink>
       </div>
 
       <nav class="main-menu grid grid-flow-col gap-2.5">
-        <RouterLink to="/">home</RouterLink>
-        <RouterLink to="/my-plants">my plants</RouterLink>
+        <!-- <RouterLink to="/">home</RouterLink> -->
+        <RouterLink to="/">my plants</RouterLink>
         <RouterLink to="/about">about</RouterLink>
       </nav>
     </div>
@@ -30,6 +30,7 @@ import { RouterLink } from 'vue-router'
   text-transform: uppercase;
 
   /* @todo add proper hover */
+  &.router-link-active,
   &:hover {
     text-decoration: underline var(--spacing);
   }
