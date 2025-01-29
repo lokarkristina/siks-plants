@@ -1,5 +1,5 @@
 {
-  "plants": [
+  "all-plants": [
     {
       "id": 1,
       "name": "Aloe Vera",
@@ -161,48 +161,8 @@
       "type": "Flowering"
     },
     {
-      "id": 17,
-      "name": "Bamboo",
-      "watering-frequency": "3/week",
-      "room": "Bathroom",
-      "prefers": "shade",
-      "last-watered": "2023-10-02",
-      "notes": "Grows fast",
-      "type": "Grass"
-    },
-    {
-      "id": 18,
-      "name": "Succulent",
-      "watering-frequency": "2/months",
-      "room": "Office",
-      "prefers": "sun",
-      "last-watered": "2023-09-15",
-      "notes": "Low maintenance",
-      "type": "Succulent"
-    },
-    {
-      "id": 19,
-      "name": "Lavender",
-      "watering-frequency": "1/week",
-      "room": "Living Room",
-      "prefers": "sun",
-      "last-watered": "2023-10-01",
-      "notes": "Fragrant",
-      "type": "Herb"
-    },
-    {
       "id": 20,
       "name": "Mint",
-      "watering-frequency": "3/week",
-      "room": "Kitchen",
-      "prefers": "sun",
-      "last-watered": "2023-10-02",
-      "notes": "Herb",
-      "type": "Herb"
-    },
-    {
-      "id": 21,
-      "name": "Basil",
       "watering-frequency": "3/week",
       "room": "Kitchen",
       "prefers": "sun",
@@ -229,26 +189,6 @@
       "last-watered": "2023-10-01",
       "notes": "Herb",
       "type": "Herb"
-    },
-    {
-      "id": 24,
-      "name": "Rose",
-      "watering-frequency": "2/week",
-      "room": "Garden",
-      "prefers": "sun",
-      "last-watered": "2023-10-01",
-      "notes": "Beautiful flowers",
-      "type": "Flowering"
-    },
-    {
-      "id": 25,
-      "name": "Tulip",
-      "watering-frequency": "1/week",
-      "room": "Garden",
-      "prefers": "sun",
-      "last-watered": "2023-10-01",
-      "notes": "Spring bloomer",
-      "type": "Flowering"
     },
     {
       "id": 26,
@@ -279,6 +219,40 @@
       "last-watered": "2023-10-01",
       "notes": "Simple and pretty",
       "type": "Flowering"
+    }
+  ],
+  "all-rooms": [
+    {
+      "id": 1,
+      "name": "Living Room",
+      "description": "Bright and spacious"
+    },
+    {
+      "id": 3,
+      "name": "Bedroom",
+      "description": "Cozy and relaxing"
+    },
+    {
+      "id": 5,
+      "name": "Office",
+      "description": "Quiet and productive"
+    }
+  ],
+  "all-types": [
+    {
+      "id": 1,
+      "name": "Succulent",
+      "description": "Waterwise plants"
+    },
+    {
+      "id": 2,
+      "name": "Herb",
+      "description": "Culinary plants"
+    },
+    {
+      "id": 3,
+      "name": "Other",
+      "description": "Miscellaneous plants"
     }
   ]
 }
