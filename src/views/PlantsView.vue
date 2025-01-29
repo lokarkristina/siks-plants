@@ -68,7 +68,7 @@ const resetFilters = () => {
 
 const fetchPlants = async () => {
   try {
-    const response = await fetch(`${API_URL}`)
+    const response = await fetch(`${API_URL}/db`)
     if (!response.ok) {
       throw new Error('Network response was not ok!')
     }
