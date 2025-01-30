@@ -14,8 +14,20 @@ const searchText = ref('')
 const selectedRoom = ref(0)
 const selectedType = ref<number[]>([])
 
-// @todo maybe clean up classes more? idk what tailwindy wants
-const filterClasses = ['grid', 'items-center', 'gap-1.5']
+const filterClasses = ['grid', 'items-center', 'gap-1.5', 'mt-3']
+const buttonClasses = [
+  'inline-block',
+  'py-1',
+  'px-2',
+  'text-xs',
+  'text-center',
+  'text-accent',
+  'hover:text-dark',
+  'focus:ring-1',
+  'focus:outline-none',
+  'focus:ring-primary',
+  'transition-color',
+]
 
 const filteredPlants = computed(() => {
   if (searchText.value) {
@@ -63,14 +75,10 @@ const fetchPlants = () => {
   const { data, loading, error } = useFetch('db')
 
   watchEffect(() => {
-    if (!loading.value) {
-      console.log('🦒: ', data.value)
-
-      if (data.value) {
-        plants.value = data.value.allPlants ?? []
-        rooms.value = [{ id: 0, name: 'Any' }, ...(data.value.allRooms ?? [])]
-        plantTypes.value = data.value.allTypes ?? []
-      }
+    if (!loading.value && data.value) {
+      plants.value = data.value.allPlants ?? []
+      rooms.value = [{ id: 0, name: 'Any' }, ...(data.value.allRooms ?? [])]
+      plantTypes.value = data.value.allTypes ?? []
     }
 
     if (error.value) {
@@ -86,38 +94,35 @@ onMounted(() => {
 
 <template>
   <div
-    class="plants grid grid-cols-[0.25fr_0.65fr_auto] grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5"
+    class="plants grid grid-cols-[1fr_auto] md:grid-cols-[0.25fr_0.65fr_auto] md:grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5"
   >
     <div class="plants-title-area col-span-full row-[1]">
-      <h1>My <span>plants</span></h1>
+      <h1>my <span>plants</span></h1>
     </div>
 
-    <!-- @todo add search option (if time) -->
-
     <!-- filters -->
-    <div class="plants-filters col-span-1 row-start-2 row-span-full">
+    <div class="plants-filters col-span-full md:col-span-1 row-start-2">
       <div class="plants-filter__header flex justify-between items-center">
-        <p class="text-lg">filters</p>
+        <p class="text-md">filter by</p>
 
         <!-- reset all filters -->
-
         <button
           type="button"
           v-if="selectedRoom !== 0 || !!selectedType.length"
-          class="inline-block text-primary/70 hover:text-dark border border-primary/70 hover:bg-primary/25 focus:ring-2 focus:outline-none focus:ring-primary text-xs rounded-md px-2 py-1 text-center"
+          :class="buttonClasses"
           @click="resetFilters"
         >
-          Reset
+          reset
         </button>
       </div>
 
       <div
         v-if="!!rooms.length || !!plantTypes.length"
-        class="plants-filter__body grid gap-5 mt-5 border-t-1 border-t-primary/25 p-y-5"
+        class="plants-filter__body grid grid-cols-2 md:grid-cols-[auto] gap-5 mt-5 border-t-1 border-t-primary/25 p-y-5"
       >
         <!-- filter/room -->
         <div class="plants-filter plants-filter--room" :class="filterClasses">
-          <p class="text-lg">Room</p>
+          <p class="text-md">Room</p>
           <div class="radio-group">
             <div v-for="room in rooms" :key="room.id" class="radio-item">
               <input type="radio" :id="'room-' + room.id" :value="room.id" v-model="selectedRoom" />
@@ -130,7 +135,7 @@ onMounted(() => {
 
         <!-- filter/type -->
         <div class="plants-filter plants-filter--type" :class="filterClasses">
-          <p class="text-lg">Type</p>
+          <p class="text-md">Type</p>
           <div class="checkbox-group">
             <div v-for="type in plantTypes" :key="type.id" class="checkbox-item">
               <input
@@ -147,46 +152,54 @@ onMounted(() => {
     </div>
 
     <!-- sorting -->
-    <div class="plants-sort col-[3] row-start-2 row-end-3 order-1">
+    <div class="plants-sort col-span-full md:col-[3] row-start-2 row-end-3 order-1">
       <!-- reset (by id, default | name | last watered) -->
-      <div class="plants-sort__order flex items-center gap-2">
-        <label for="sort-order" class="text-xs">Sort by</label>
-        <select id="sort-order" @change="onSortChange">
-          <option value="default">Default</option>
-          <option value="name">Name</option>
-          <option value="lastWatered">Last Watered</option>
+      <div class="plants-sort__order flex items-center justify-end gap-2">
+        <label for="sort-order" class="block text-xs text-dark/80">sort by</label>
+        <select
+          id="sort-order"
+          class="border-b-2 border-primary/60 text-dark/80 text-sm focus:border-prrimary/80 block px-1 py-0.5"
+          @change="onSortChange"
+        >
+          <option value="default">default</option>
+          <option value="name">name</option>
+          <option value="lastWatered">last watered</option>
         </select>
       </div>
-      <!-- @todo change display grid/list (if time) -->
     </div>
 
     <!-- results -->
+    <!-- @todo add loader, transitions -->
     <div
-      class="plants-results grid grid-cols-subgrid col-start-2 col-span-full row-start-2 row-span-full gap-x-5 gap-y-2"
+      class="plants-results grid grid-cols-subgrid col-span-full md:col-start-2 md:row-start-2 md:row-span-full gap-x-5 gap-y-3 md:gap-y-10"
     >
       <p class="col-[1/span 2] row-span-1 text-xl">
-        Results
-        <span class="text-xs text-light">({{ filteredPlants.length }})</span>
+        results
+        <span class="text-xs text-primary/80">
+          ({{ filteredPlants.length }})
+        </span>
       </p>
 
-      <div class="grid col-span-full row-start-2 grid-cols-4 gap-4">
+      <div class="grid col-span-full row-start-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         <!-- @todo add proper styling, move to separate file if needed -->
         <template v-if="filteredPlants.length">
           <RouterLink
             :to="`/plants/${plant.id}`"
             v-for="plant in filteredPlants"
             :key="plant.id"
-            class="plant-card p-5 border-1 border-primary/25 rounded-md"
+            class="plant-card border border-primary/30 rounded-md overflow-hidden hover:border-primary/50 hover:shadow-lg transition-shadow duration-200"
           >
             <img
               :src="plant.image"
               :alt="`${plant.name} plant image`"
-              class="w-full h-32 object-cover rounded-md mb-2"
+              class="w-full h-32 object-cover mb-2"
             />
-            <h2>{{ plant.name }}</h2>
+            <h2 class="p-3 md:p-5">{{ plant.name }}</h2>
           </RouterLink>
         </template>
-        <p v-else class="text-xl text-center">No plants found. 🪴</p>
+        <p v-else class="text-md md:text-3xl text-center color-dark font-logo">
+          No plants found. 🪴
+        </p>
       </div>
     </div>
   </div>

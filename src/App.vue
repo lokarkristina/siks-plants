@@ -9,17 +9,10 @@ import ppFooter from '@/components/layout/ppFooter.vue'
   <ppHeader />
 
   <!-- content -->
-  <main class="container py-20">
+  <main class="container px-10 md:px-15 py-10 mx-auto mb-20">
     <RouterView />
   </main>
 
   <!-- page footer -->
   <ppFooter />
 </template>
-
-<style>
-.container {
-  width: max(95vw, var(--container-xl));
-  margin-inline: auto;
-}
-</style>
