@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+// composables
+import { usePost } from '@/composables/post'
+// types
 import type { Plant } from '@/types/plant'
 
 // predefine some values to reduce the amount of typing
@@ -16,7 +19,7 @@ const newPlant = ref<Plant>({
 
 const addPlant = () => {
   console.log('Plant added:', newPlant.value)
-  // Here you can add the logic to save the new plant to your database or state management
+  usePost('allPlants', newPlant.value);
 }
 
 // styling, but so much classes ...

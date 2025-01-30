@@ -101,7 +101,7 @@ onMounted(() => {
     </div>
 
     <!-- filters -->
-    <div class="plants-filters col-span-full md:col-span-1 row-start-2">
+    <aside class="plants-filters col-span-full md:col-span-1 row-start-2">
       <div class="plants-filter__header flex justify-between items-center">
         <p class="text-md">filter by</p>
 
@@ -149,7 +149,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-    </div>
+    </aside>
 
     <!-- sorting -->
     <div class="plants-sort col-span-full md:col-[3] row-start-2 row-end-3 order-1">

@@ -18,6 +18,8 @@
     --color-light: #b4cae0;
     --color-white: #ffffff;
     --color-black: #000000;
+    --color-error: #d33f49;
+    --color-success: #ccf5ac;
 }
 
 ::selection {
