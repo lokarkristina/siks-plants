@@ -37,8 +37,16 @@ const routerLinkClasses = [
       >
         <span class="sr-only">Open main menu</span>
         <!-- the mobile menu icon -->
-        <svg class="menu-icon w-6 h-6 text-dark/80" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 17 14">
-          <path d="M16 2H1a1 1 0 0 1 0-2h15a1 1 0 1 1 0 2Zm0 6H1a1 1 0 0 1 0-2h15a1 1 0 1 1 0 2Zm0 6H1a1 1 0 0 1 0-2h15a1 1 0 0 1 0 2Z"/>
+        <svg
+          class="menu-icon w-6 h-6 text-dark/80"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 17 14"
+        >
+          <path
+            d="M16 2H1a1 1 0 0 1 0-2h15a1 1 0 1 1 0 2Zm0 6H1a1 1 0 0 1 0-2h15a1 1 0 1 1 0 2Zm0 6H1a1 1 0 0 1 0-2h15a1 1 0 0 1 0 2Z"
+          />
         </svg>
       </label>
       <div
@@ -49,14 +57,10 @@ const routerLinkClasses = [
           class="main-menu grid md:grid-flow-col gap-1 md:gap-2.5 md:translate-x-4"
           aria-label="Main Navigation"
         >
-          <RouterLink to="/"
-            :class="routerLinkClasses"
-            aria-label="My Plants">
+          <RouterLink to="/" :class="routerLinkClasses" aria-label="My Plants">
             my plants
           </RouterLink>
-          <RouterLink to="/plants/add"
-            :class="routerLinkClasses"
-            aria-label="Add Plant">
+          <RouterLink to="/plants/add" :class="routerLinkClasses" aria-label="Add Plant">
             add plant
           </RouterLink>
         </nav>

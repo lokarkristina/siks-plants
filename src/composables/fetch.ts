@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import API_URL from '../utils/constants'
 
-export function useFetch(url: string) {
-  const data = ref<null>(null)
+export function useFetch<T>(url: string) {
+  const data = ref<T | null>(null)
   const loading = ref(true)
   const error = ref<Error | null>(null)
 

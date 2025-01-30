@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watchEffect } from 'vue'
 import { useFetch } from '@/composables/fetch.ts'
-import type { Plant, Room, PlantType } from '@/types'
+import type { Plant } from '@/types/plant'
+import type { PlantType } from '@/types/plantType'
+import type { Room } from '@/types/room'
+import type { DbResponse } from '@/types/dbResponse'
 
 const plants = ref<Plant[]>([])
 const rooms = ref<Room[]>([])
@@ -28,7 +31,7 @@ const buttonClasses = [
 const filteredPlants = computed(() => {
   if (searchText.value) {
     return plants.value.filter((plant: Plant) =>
-      plant.name.toLowerCase().includes(searchText.value.toLowerCase())
+      plant.name.toLowerCase().includes(searchText.value.toLowerCase()),
     )
   }
 
@@ -51,7 +54,7 @@ const onSortChange = (event: Event) => {
       break
     case 'lastWatered':
       plants.value.sort(
-        (a, b) => new Date(b.lastWatered).getTime() - new Date(a.lastWatered).getTime()
+        (a, b) => new Date(b.lastWatered).getTime() - new Date(a.lastWatered).getTime(),
       )
       break
     default:
@@ -61,13 +64,14 @@ const onSortChange = (event: Event) => {
 }
 
 const resetFilters = () => {
-  searchText.value = ''
   selectedRoom.value = 0
   selectedType.value = []
 }
 
 const fetchPlants = () => {
-  const { data, loading, error } = useFetch('db')
+  const { data, loading, error } = useFetch<DbResponse>('db')
+  selectedRoom.value = 0
+  selectedType.value = []
 
   watchEffect(() => {
     if (!loading.value && data.value) {
@@ -86,7 +90,9 @@ onMounted(fetchPlants)
 </script>
 
 <template>
-  <div class="plants grid grid-cols-[1fr_auto] md:grid-cols-[0.25fr_0.65fr_auto] md:grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5">
+  <div
+    class="plants grid grid-cols-[1fr_auto] md:grid-cols-[0.25fr_0.65fr_auto] md:grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5"
+  >
     <div class="plants-title-area col-span-full row-[1]">
       <h1 class="text-4xl md:text-6xl">my <span>plants</span></h1>
     </div>
@@ -108,7 +114,10 @@ onMounted(fetchPlants)
         </button>
       </div>
 
-      <div v-if="rooms.length || plantTypes.length" class="plants-filter__body grid grid-cols-2 md:grid-cols-[auto] gap-5 mt-5 border-t-1 border-t-primary/25 p-y-5">
+      <div
+        v-if="rooms.length || plantTypes.length"
+        class="plants-filter__body grid grid-cols-2 md:grid-cols-[auto] gap-5 mt-5 border-t-1 border-t-primary/25 p-y-5"
+      >
         <div class="plants-filter plants-filter--room" :class="filterClasses">
           <p class="text-md">Room</p>
           <div class="radio-group" role="radiogroup" aria-labelledby="room-filter">
@@ -124,7 +133,12 @@ onMounted(fetchPlants)
           <p class="text-md">Type</p>
           <div class="checkbox-group" role="group" aria-labelledby="type-filter">
             <div v-for="type in plantTypes" :key="type.id" class="checkbox-item">
-              <input type="checkbox" :id="`type-${type.id}`" :value="type.id" v-model="selectedType" />
+              <input
+                type="checkbox"
+                :id="`type-${type.id}`"
+                :value="type.id"
+                v-model="selectedType"
+              />
               <label :for="`type-${type.id}`" class="inline-block ms-1.5">{{ type.name }}</label>
             </div>
           </div>

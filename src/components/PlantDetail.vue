@@ -99,11 +99,13 @@ const buttonClasses = [
   <div class="border-t border-primary/60 mt-20 py-10">
     <span class="block mb-5 text-dark/60 text-xs">actions</span>
     <!-- delete the plant -->
-    <button v-if="plant"
+    <button
+      v-if="plant"
       type="button"
       :class="buttonClasses"
       :aria-label="`Delete ${plant?.name}`"
-      @click="deletePlant(plant?.id)">
+      @click="deletePlant(plant?.id)"
+    >
       {{ `delete ${plant?.name}` }}
     </button>
   </div>
