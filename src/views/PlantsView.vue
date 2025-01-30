@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watchEffect } from 'vue'
 import { useFetch } from '@/composables/fetch.ts'
-import type { Plant, Room, PlantType } from '@/types'
+import type { Plant } from '@/types/plant'
+import type { PlantType } from '@/types/plantType'
+import type { Room } from '@/types/room'
+import type { DbResponse } from '@/types/dbResponse'
 
 const plants = ref<Plant[]>([])
 const rooms = ref<Room[]>([])
@@ -61,13 +64,14 @@ const onSortChange = (event: Event) => {
 }
 
 const resetFilters = () => {
-  searchText.value = ''
   selectedRoom.value = 0
   selectedType.value = []
 }
 
 const fetchPlants = () => {
-  const { data, loading, error } = useFetch('db')
+  const { data, loading, error } = useFetch<DbResponse>('db')
+  selectedRoom.value = 0
+  selectedType.value = []
 
   watchEffect(() => {
     if (!loading.value && data.value) {
