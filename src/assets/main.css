@@ -2,43 +2,43 @@
 /* @todo check for file standards */
 
 @theme {
-    /* reset tailwind color variables, bc no need */
-    --color-*: initial;
+  /* reset tailwind color variables, bc no need */
+  --color-*: initial;
 
-    /* not sure about these fonts yet */
-    --font-sans: "Palanquin", serif;
-    --font-serif: "Tajawal", serif;
-    --font-logo: "Text Me One", serif;
+  /* not sure about these fonts yet */
+  --font-sans: 'Palanquin', serif;
+  --font-serif: 'Tajawal', serif;
+  --font-logo: 'Text Me One', serif;
 
-    /* @todo use moderners color definitions */
-    --color-primary: #528265;
-    --color-primary-light: #0ad6a1;
-    --color-accent: #ffa69e;
-    --color-dark: #565869;
-    --color-light: #b4cae0;
-    --color-white: #ffffff;
-    --color-black: #000000;
-    --color-error: #d33f49;
-    --color-success: #ccf5ac;
+  /* @todo use moderners color definitions */
+  --color-primary: #528265;
+  --color-primary-light: #0ad6a1;
+  --color-accent: #ffa69e;
+  --color-dark: #565869;
+  --color-light: #b4cae0;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-error: #d33f49;
+  --color-success: #ccf5ac;
 }
 
 ::selection {
-    background: var(--color-accent);
-    color: var(--color-dark);
+  background: var(--color-accent);
+  color: var(--color-dark);
 }
 
 /* @todo check if this should be defined elsewhere */
 h1 {
-    font-family: var(--font-serif);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-dark);
+  font-family: var(--font-serif);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
 
-    span {
-        color: var(--color-accent);
-    }
+  span {
+    color: var(--color-accent);
+  }
 }
 
 button {
-    font-family: var(--font-serif);
-    cursor: pointer;
+  font-family: var(--font-serif);
+  cursor: pointer;
 }
