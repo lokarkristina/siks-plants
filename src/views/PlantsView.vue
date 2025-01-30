@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-// utils
-import API_URL from '@/utils/constants'
+import { ref, computed, onMounted, watchEffect } from 'vue'
+// composables
+import { useFetch } from '@/composables/fetch.ts'
 // types
 import type { Plant } from '@/types/plant'
 import type { Room } from '@/types/room'
@@ -16,18 +16,6 @@ const selectedType = ref<number[]>([])
 
 // @todo maybe clean up classes more? idk what tailwindy wants
 const filterClasses = ['grid', 'items-center', 'gap-1.5']
-
-const getRoomNameById = (id: number, rooms: Room[]): string => {
-  const room = rooms.find((room) => room.id === id)
-  return room?.name || ''
-}
-
-const getPlantTypeNames = (typeIds: number[], types: PlantType[]): string => {
-  return typeIds
-    .map((id) => types.find((type) => type.id === id)?.name)
-    .filter((name) => name)
-    .join(', ')
-}
 
 const filteredPlants = computed(() => {
   if (searchText.value) {
@@ -71,29 +59,24 @@ const resetFilters = () => {
   selectedType.value = []
 }
 
-const fetchPlants = async () => {
-  try {
-    const response = await fetch(`${API_URL}/db`)
-    if (!response.ok) {
-      throw new Error('Network response was not ok!')
-    }
-    // @todo loading
-    const data = await response.json()
-    // @todo do we separate this? or no call at all, bc so little data?
-    // @todo why no refactoring working?
-    plants.value = data.allPlants
+const fetchPlants = () => {
+  const { data, loading, error } = useFetch('db')
 
-    rooms.value = data.allRooms
-    if (rooms.value.length) {
-      rooms.value = [{ id: 0, name: 'Any' }, ...rooms.value]
+  watchEffect(() => {
+    if (!loading.value) {
+      console.log('🦒: ', data.value)
+
+      if (data.value) {
+        plants.value = data.value.allPlants ?? []
+        rooms.value = [{ id: 0, name: 'Any' }, ...(data.value.allRooms ?? [])]
+        plantTypes.value = data.value.allTypes ?? []
+      }
     }
 
-    plantTypes.value = data.allTypes
-  } catch (error) {
-    console.error('Error fetching plants:', error)
-  } finally {
-    // @todo loading
-  }
+    if (error.value) {
+      console.error('Error fetching plants:', error.value)
+    }
+  })
 }
 
 onMounted(() => {
@@ -114,15 +97,17 @@ onMounted(() => {
     <!-- filters -->
     <div class="plants-filters col-span-1 row-start-2 row-span-full">
       <div class="plants-filter__header flex justify-between items-center">
-        <p class="text-xl">filter by</p>
+        <p class="text-lg">filters</p>
 
         <!-- reset all filters -->
+
         <button
+          type="button"
           v-if="selectedRoom !== 0 || !!selectedType.length"
-          class="button button--secondary"
+          class="inline-block text-primary/70 hover:text-dark border border-primary/70 hover:bg-primary/25 focus:ring-2 focus:outline-none focus:ring-primary text-xs rounded-md px-2 py-1 text-center"
           @click="resetFilters"
         >
-          reset
+          Reset
         </button>
       </div>
 
@@ -136,7 +121,7 @@ onMounted(() => {
           <div class="radio-group">
             <div v-for="room in rooms" :key="room.id" class="radio-item">
               <input type="radio" :id="'room-' + room.id" :value="room.id" v-model="selectedRoom" />
-              <label :for="'room-' + room.id">
+              <label :for="'room-' + room.id" class="inline-block ms-1.5">
                 {{ room.name }}
               </label>
             </div>
@@ -154,7 +139,7 @@ onMounted(() => {
                 :value="type.id"
                 v-model="selectedType"
               />
-              <label :for="`type-${type.id}`">{{ type.name }}</label>
+              <label :for="`type-${type.id}`" class="inline-block ms-1.5">{{ type.name }}</label>
             </div>
           </div>
         </div>
@@ -185,18 +170,20 @@ onMounted(() => {
       </p>
 
       <div class="grid col-span-full row-start-2 grid-cols-4 gap-4">
-        <!-- plant card, @todo move out -->
+        <!-- @todo add proper styling, move to separate file if needed -->
         <template v-if="filteredPlants.length">
           <RouterLink
-            :to="`/plants/${plant.name.toLowerCase().replace(/ /g, '-')}`"
+            :to="`/plants/${plant.id}`"
             v-for="plant in filteredPlants"
             :key="plant.id"
             class="plant-card p-5 border-1 border-primary/25 rounded-md"
           >
+            <img
+              :src="plant.image"
+              :alt="`${plant.name} plant image`"
+              class="w-full h-32 object-cover rounded-md mb-2"
+            />
             <h2>{{ plant.name }}</h2>
-            <p>Watering Frequency: {{ plant.wateringFrequency }}</p>
-            <p v-if="!!plant.room">Room: {{ getRoomNameById(plant.room, rooms) }}</p>
-            <p v-if="plant.type.length">Type: {{ getPlantTypeNames(plant.type, plantTypes) }}</p>
           </RouterLink>
         </template>
         <p v-else class="text-xl text-center">No plants found. 🪴</p>

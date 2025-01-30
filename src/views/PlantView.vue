@@ -1,9 +1,7 @@
-<!-- @todo this component might be unnecessary -->
-
 <script setup lang="ts">
-import Plant from '@/components/content/Plant.vue';
+import PlantDetail from '@/components/PlantDetail.vue'
 </script>
 
 <template>
-    <Plant />
+  <PlantDetail />
 </template>
