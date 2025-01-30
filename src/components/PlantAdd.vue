@@ -56,17 +56,18 @@ const buttonClasses = [
 
 <template>
   <div class="max-w-md mx-auto">
-    <h1>add <span>new plant</span></h1>
+    <h1 class="text-4xl md:text-6xl">add <span>new plant</span></h1>
 
-    <form @submit.prevent="addPlant">
+    <!-- @todo validation -->
+    <form @submit.prevent="addPlant" role="form">
       <div>
         <label for="name" :class="labelClasses">name</label>
-        <input id="name" v-model="newPlant.name" type="text" :class="inputClasses" required />
+        <input id="name" v-model="newPlant.name" type="text" :class="inputClasses" aria-label="Plant name" required />
       </div>
 
       <div>
         <label for="prefers" :class="labelClasses">plant prefers</label>
-        <input id="prefers" v-model="newPlant.prefers" type="text" :class="inputClasses" required />
+        <input id="prefers" v-model="newPlant.prefers" type="text" :class="inputClasses" aria-label="Plant prefers" required />
       </div>
 
       <div>
@@ -76,6 +77,7 @@ const buttonClasses = [
           v-model="newPlant.wateringFrequency"
           type="text"
           :class="inputClasses"
+          aria-label="Watering frequency"
           required
         />
       </div>
@@ -83,7 +85,7 @@ const buttonClasses = [
       <!-- submit button -->
        <div class="flex justify-end">
           <!-- @todo text is weirdly positioned, figure out why -->
-         <button type="submit" :class="buttonClasses">add plant</button>
+         <button type="submit" :class="buttonClasses" aria-label="Add plant">add plant</button>
        </div>
     </form>
   </div>

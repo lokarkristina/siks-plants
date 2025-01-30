@@ -16,7 +16,7 @@ export function useDelete(id: number) {
       if (!response.ok) {
         throw new Error('Network response was not ok')
       }
-      alert('Plant deleted succesfully. 🪴')
+      alert('Plant deleted successfully. 🪴')
     } catch (err) {
       error.value = err as Error
     } finally {

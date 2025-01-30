@@ -1,9 +1,10 @@
 import { ref } from 'vue'
 // utils
 import API_URL from '../utils/constants'
+// types
+import type { Plant } from '@/types/plant'
 
-// @todo add data type
-export function usePost(endpoint: string, data: unknown) {
+export function usePost(endpoint: string, data: Plant) {
   const loading = ref(false)
   const error = ref<Error | null>(null)
 
@@ -25,8 +26,7 @@ export function usePost(endpoint: string, data: unknown) {
       }
 
       await response.json()
-      // @todo add proper messages
-      alert('🪴 plant added successfully 🪴')
+      alert('🪴 Plant added successfully. 🪴')
     } catch (err) {
       error.value = err as Error
     } finally {

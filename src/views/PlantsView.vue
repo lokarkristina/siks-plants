@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watchEffect } from 'vue'
-// composables
 import { useFetch } from '@/composables/fetch.ts'
-// types
-import type { Plant } from '@/types/plant'
-import type { Room } from '@/types/room'
-import type { PlantType } from '@/types/plantType'
+import type { Plant, Room, PlantType } from '@/types'
 
 const plants = ref<Plant[]>([])
 const rooms = ref<Room[]>([])
@@ -32,19 +28,18 @@ const buttonClasses = [
 const filteredPlants = computed(() => {
   if (searchText.value) {
     return plants.value.filter((plant: Plant) =>
-      plant.name.toLowerCase().includes(searchText.value.toLowerCase()),
+      plant.name.toLowerCase().includes(searchText.value.toLowerCase())
     )
   }
 
   return plants.value.filter((plant: Plant) => {
-    if (selectedRoom.value || !!selectedType.value.length) {
+    if (selectedRoom.value || selectedType.value.length) {
       return (
         selectedRoom.value === plant.room ||
         plant.type.some((type) => selectedType.value.includes(type))
       )
-    } else {
-      return plants.value
     }
+    return plants.value
   })
 })
 
@@ -56,7 +51,7 @@ const onSortChange = (event: Event) => {
       break
     case 'lastWatered':
       plants.value.sort(
-        (a, b) => new Date(b.lastWatered).getTime() - new Date(a.lastWatered).getTime(),
+        (a, b) => new Date(b.lastWatered).getTime() - new Date(a.lastWatered).getTime()
       )
       break
     default:
@@ -87,17 +82,13 @@ const fetchPlants = () => {
   })
 }
 
-onMounted(() => {
-  fetchPlants()
-})
+onMounted(fetchPlants)
 </script>
 
 <template>
-  <div
-    class="plants grid grid-cols-[1fr_auto] md:grid-cols-[0.25fr_0.65fr_auto] md:grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5"
-  >
+  <div class="plants grid grid-cols-[1fr_auto] md:grid-cols-[0.25fr_0.65fr_auto] md:grid-rows-[auto_1fr_auto] items-start gap-x-10 gap-y-5">
     <div class="plants-title-area col-span-full row-[1]">
-      <h1>my <span>plants</span></h1>
+      <h1 class="text-4xl md:text-6xl">my <span>plants</span></h1>
     </div>
 
     <!-- filters -->
@@ -111,24 +102,19 @@ onMounted(() => {
           v-if="selectedRoom !== 0 || !!selectedType.length"
           :class="buttonClasses"
           @click="resetFilters"
+          aria-label="Reset filters"
         >
           reset
         </button>
       </div>
 
-      <div
-        v-if="!!rooms.length || !!plantTypes.length"
-        class="plants-filter__body grid grid-cols-2 md:grid-cols-[auto] gap-5 mt-5 border-t-1 border-t-primary/25 p-y-5"
-      >
-        <!-- filter/room -->
+      <div v-if="rooms.length || plantTypes.length" class="plants-filter__body grid grid-cols-2 md:grid-cols-[auto] gap-5 mt-5 border-t-1 border-t-primary/25 p-y-5">
         <div class="plants-filter plants-filter--room" :class="filterClasses">
           <p class="text-md">Room</p>
-          <div class="radio-group">
+          <div class="radio-group" role="radiogroup" aria-labelledby="room-filter">
             <div v-for="room in rooms" :key="room.id" class="radio-item">
               <input type="radio" :id="'room-' + room.id" :value="room.id" v-model="selectedRoom" />
-              <label :for="'room-' + room.id" class="inline-block ms-1.5">
-                {{ room.name }}
-              </label>
+              <label :for="'room-' + room.id" class="inline-block ms-1.5">{{ room.name }}</label>
             </div>
           </div>
         </div>
@@ -136,14 +122,9 @@ onMounted(() => {
         <!-- filter/type -->
         <div class="plants-filter plants-filter--type" :class="filterClasses">
           <p class="text-md">Type</p>
-          <div class="checkbox-group">
+          <div class="checkbox-group" role="group" aria-labelledby="type-filter">
             <div v-for="type in plantTypes" :key="type.id" class="checkbox-item">
-              <input
-                type="checkbox"
-                :id="`type-${type.id}`"
-                :value="type.id"
-                v-model="selectedType"
-              />
+              <input type="checkbox" :id="`type-${type.id}`" :value="type.id" v-model="selectedType" />
               <label :for="`type-${type.id}`" class="inline-block ms-1.5">{{ type.name }}</label>
             </div>
           </div>
@@ -158,8 +139,9 @@ onMounted(() => {
         <label for="sort-order" class="block text-xs text-dark/80">sort by</label>
         <select
           id="sort-order"
-          class="border-b-2 border-primary/60 text-dark/80 text-sm focus:border-prrimary/80 block px-1 py-0.5"
+          class="border-b-2 border-primary/60 text-dark/80 text-sm focus:border-primary/80 block px-1 py-0.5"
           @change="onSortChange"
+          aria-label="Sort plants"
         >
           <option value="default">default</option>
           <option value="name">name</option>
@@ -175,9 +157,7 @@ onMounted(() => {
     >
       <p class="col-[1/span 2] row-span-1 text-xl">
         results
-        <span class="text-xs text-primary/80">
-          ({{ filteredPlants.length }})
-        </span>
+        <span class="text-xs text-primary/80">({{ filteredPlants.length }})</span>
       </p>
 
       <div class="grid col-span-full row-start-2 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -188,6 +168,7 @@ onMounted(() => {
             v-for="plant in filteredPlants"
             :key="plant.id"
             class="plant-card border border-primary/30 rounded-md overflow-hidden hover:border-primary/50 hover:shadow-lg transition-shadow duration-200"
+            aria-label="View plant details"
           >
             <img
               :src="plant.image"

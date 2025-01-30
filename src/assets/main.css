@@ -30,7 +30,6 @@
 /* @todo check if this should be defined elsewhere */
 h1 {
     font-family: var(--font-serif);
-    font-size: var(--text-6xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-dark);
 

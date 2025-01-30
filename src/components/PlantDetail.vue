@@ -81,7 +81,7 @@ const buttonClasses = [
 
   <!-- plant information -->
   <div v-if="plant && !loading && !error" class="plant">
-    <h1>{{ plant.name }}</h1>
+    <h1 class="text-4xl md:text-6xl">{{ plant.name }}</h1>
 
     <div class="plant-details">
       <p><strong>Watering frequency:</strong> {{ plant.wateringFrequency }}</p>
@@ -99,7 +99,11 @@ const buttonClasses = [
   <div class="border-t border-primary/60 mt-20 py-10">
     <span class="block mb-5 text-dark/60 text-xs">actions</span>
     <!-- delete the plant -->
-    <button type="button" :class="buttonClasses" @click="deletePlant(plant?.id)">
+    <button v-if="plant"
+      type="button"
+      :class="buttonClasses"
+      :aria-label="`Delete ${plant?.name}`"
+      @click="deletePlant(plant?.id)">
       {{ `delete ${plant?.name}` }}
     </button>
   </div>
