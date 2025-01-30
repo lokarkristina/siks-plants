@@ -12,7 +12,7 @@ export function useFetch(url: string) {
     try {
       const response = await fetch(`${API_URL}/${url}`)
       if (!response.ok) {
-        throw new Error('Network response was not ok')
+        throw new Error('Network response was not ok!')
       }
       data.value = await response.json()
     } catch (err) {

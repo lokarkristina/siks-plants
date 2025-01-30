@@ -8,21 +8,28 @@
     /* not sure about these fonts yet */
     --font-sans: "Palanquin", serif;
     --font-serif: "Tajawal", serif;
+    --font-logo: "Text Me One", serif;
 
     /* @todo use moderners color definitions */
     --color-primary: #528265;
-    --color-primary-light: #C7EFE0;
-    --color-accent: #E7AD99;
-    --color-dark: #1a1d1a;
-    --color-light: #828282;
+    --color-primary-light: #0ad6a1;
+    --color-accent: #ffa69e;
+    --color-dark: #565869;
+    --color-light: #b4cae0;
     --color-white: #ffffff;
     --color-black: #000000;
+    --color-error: #d33f49;
+    --color-success: #ccf5ac;
+}
+
+::selection {
+    background: var(--color-accent);
+    color: var(--color-dark);
 }
 
 /* @todo check if this should be defined elsewhere */
 h1 {
     font-family: var(--font-serif);
-    font-size: var(--text-6xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-dark);
 
@@ -32,5 +39,6 @@ h1 {
 }
 
 button {
+    font-family: var(--font-serif);
     cursor: pointer;
 }

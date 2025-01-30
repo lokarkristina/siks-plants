@@ -6,9 +6,7 @@ export function useRoom(roomId: number) {
   const { data } = useFetch(`allRooms/${roomId}`)
 
   watchEffect(() => {
-    if (data.value) {
-      room.value = data.value.name
-    }
+    room.value = data.value?.name || null
   })
 
   return { room }

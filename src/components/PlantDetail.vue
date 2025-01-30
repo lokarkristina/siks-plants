@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 // composables
 import { useFetch } from '@/composables/fetch'
 import { useRoom } from '@/composables/room'
+import { useDelete } from '@/composables/delete'
 // types
 import type { Plant } from '@/types/plant'
 
@@ -41,17 +42,46 @@ const fetchRoomName = (roomId: number) => {
   })
 }
 
+const deletePlant = (plantId: number) => {
+  useDelete(plantId)
+}
+
 onMounted(() => {
   fetchPlant()
 })
+
+// classes
+// @todo this should be reused,
+// bc it's in other components also
+const buttonClasses = [
+  'block',
+  'mt-3',
+  'p-2',
+  'border-2',
+  'border-error',
+  'rounded-sm',
+  'text-error',
+  'text-md',
+  'font-bold',
+  'uppercase',
+  'hover:bg-error',
+  'hover:text-white',
+  'focus:border-error',
+  'transition',
+  'duration-200',
+]
 </script>
 
 <template>
   <!-- @todo add proper styling -->
+  <!-- loading -->
   <div v-if="loading" class="loading">Loading...</div>
+  <!-- log error message -->
   <div v-if="error" class="error">{{ error.message }}</div>
+
+  <!-- plant information -->
   <div v-if="plant && !loading && !error" class="plant">
-    <h1>{{ plant.name }}</h1>
+    <h1 class="text-4xl md:text-6xl">{{ plant.name }}</h1>
 
     <div class="plant-details">
       <p><strong>Watering frequency:</strong> {{ plant.wateringFrequency }}</p>
@@ -64,5 +94,17 @@ onMounted(() => {
       <p><strong>Notes:</strong> {{ plant.notes }}</p>
       <p><strong>Type:</strong> {{ plant.type }}</p>
     </div>
+  </div>
+
+  <div class="border-t border-primary/60 mt-20 py-10">
+    <span class="block mb-5 text-dark/60 text-xs">actions</span>
+    <!-- delete the plant -->
+    <button v-if="plant"
+      type="button"
+      :class="buttonClasses"
+      :aria-label="`Delete ${plant?.name}`"
+      @click="deletePlant(plant?.id)">
+      {{ `delete ${plant?.name}` }}
+    </button>
   </div>
 </template>
